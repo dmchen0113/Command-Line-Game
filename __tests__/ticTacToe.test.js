@@ -1,5 +1,5 @@
-const { expect, test } = require("@jest/globals");
-const { describe } = require("yargs");
+const { describe, expect, test } = require("@jest/globals");
+
 const {
   makeBoard,
   isValidPosition,
@@ -44,5 +44,22 @@ describe("isValidPosition", () => {
     ];
     expect(isValidPosition(0, 0, board)).toBe(true);
     expect(isValidPosition(1, 1, board)).toBe(false);
+  });
+});
+
+describe("placeMark", () => {
+  test("updates the board with the symbol at the correct row and col", () => {
+    const board = [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ];
+    let returnedBoard = placeMark(0, 0, "x", board);
+    expect(returnedBoard).toBe(board);
+    expect(board[0][0]).toBe("x");
+
+    expect(board[2][1]).toBeNull();
+    placeMark(2, 1, "x", board);
+    expect(board[2][1]).toBe("x");
   });
 });
