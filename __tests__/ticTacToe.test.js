@@ -4,6 +4,18 @@ const {
   makeBoard,
   isValidPosition,
   placeMark,
+  isBoardFull,
+  horizontalWinnerOrNull,
+  verticalWinnerOrNull,
+  leftDiagonalWinnerOrNull,
+  rightDiagonalWinnerOrNull,
+  isGameOver,
+  switchSymbol,
+  formatRow,
+  displayBoard,
+  getRow,
+  getCol,
+  takeTurn,
 } = require("../tic-tac-toe/ticTacToe.js");
 
 describe("makeBoard", () => {

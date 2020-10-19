@@ -72,25 +72,36 @@ const isGameOver = (board) => {
 
 const switchSymbol = (sym) => (sym === "x" ? "o" : "x");
 
+const getRow = () => {
+    const row = readlineSync.questionInt("What row would you like to choose? \n") - 1;
+    return row; 
+}
+
+const getCol = () => {
+  let col =
+    readlineSync.questionInt("What col would you like to choose? \n") - 1;
+    return col; 
+}
+
 const takeTurn = (sym, board) => {
   console.log(sym + " it's your turn!");
-  let row = readlineSync.questionInt("What row would you like to choose? \n") - 1;
-  let col = readlineSync.questionInt("What col would you like to choose? \n") - 1;
+  let row = getRow()
+  let col = getCol();
   if (isValidPosition(row, col, board)) {
     placeMark(row, col, sym, board);
   } else {
     console.log("Invalid Position");
-    takeTurn();
+    takeTurn(sym, board);
   }
 };
 
-const displayRow = (row) => {
-    console.log(row.map(el => el || " ").join(" | "))
+const formatRow = (row) => {
+    return row.map(el => el || " ").join(" | ")
 }
 
 const displayBoard = (board) => {
     board.forEach((row, i) => {
-        displayRow(row)
+        console.log(formatRow(row))
         if(i !== board.length - 1) {
             console.log("-".repeat(board.length * 3))
         }
