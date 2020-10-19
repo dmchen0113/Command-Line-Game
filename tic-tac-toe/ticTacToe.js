@@ -1,3 +1,4 @@
+const readlineSync = require("readline-sync")
 /**
  * Takes in an optional length argument and
  * returns a matrix grid of that length filled with null.
@@ -88,7 +89,8 @@ const rightDiagonalWinnerOrNull = () => {};
 
 /**
  * Takes in a board and determines wether or not a game
- * is over. Use your winnerOrNull and isBoardFull helper functions
+ * is over. If there is a winner return that winner
+ * *Hint* Use your winnerOrNull (previous functions) and isBoardFull helper functions
  * to either return the winner, true, or false.
  *
  * @param {Array[]} board
@@ -126,7 +128,7 @@ const formatRow = () => {};
 const displayBoard = () => {};
 
 /**
- * Asks user for row input and returns row.
+ * Asks user for row input and returns row. Use questionInt
  * @returns {number} row (should be 1 lower than user because people count from 1)
  */
 
