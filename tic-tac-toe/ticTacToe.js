@@ -49,7 +49,7 @@ const isBoardFull = () => {};
  * Otherwise it should return null.
  *
  * @param {Array[]} board
- * @returns {*} Returns either the winner or null.
+ * @returns {string|null} Returns either the winner or null.
  */
 
 const horizontalWinnerOrNull = () => {};
@@ -60,7 +60,7 @@ const horizontalWinnerOrNull = () => {};
  * Otherwise it should return null.
  *
  * @param {Array[]} board
- * @returns {*} Returns either the winner or null.
+ * @returns {string|null} Returns either the winner or null.
  */
 
 const verticalWinnerOrNull = () => {};
@@ -71,7 +71,7 @@ const verticalWinnerOrNull = () => {};
  * Otherwise it should return null.
  *
  * @param {Array[]} board
- * @returns {*} Returns either the winner or null.
+ * @returns {string|null} Returns either the winner or null.
  */
 
 const leftDiagonalWinnerOrNull = () => {};
@@ -81,7 +81,7 @@ const leftDiagonalWinnerOrNull = () => {};
  * Otherwise it should return null.
  *
  * @param {Array[]} board
- * @returns {*} Returns either the winner or null.
+ * @returns {string|null} Returns either the winner or null.
  */
 
 const rightDiagonalWinnerOrNull = () => {};

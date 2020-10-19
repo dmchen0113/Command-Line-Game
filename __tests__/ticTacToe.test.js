@@ -75,3 +75,153 @@ describe("placeMark", () => {
     expect(board[2][1]).toBe("x");
   });
 });
+
+describe("isBoardFull", () => {
+  test("returns false when board is full of null", () => {
+    expect(
+      isBoardFull([
+        [null, null, null],
+        [null, null, null],
+        [null, null, null],
+      ])
+    ).toBe(false);
+  });
+  test("returns false when board is not full", () => {
+    expect(
+      isBoardFull([
+        ["x", null, null],
+        [null, "o", null],
+        [null, "x", "o"],
+      ])
+    ).toBe(false);
+  });
+
+  test("returns true when board is full", () => {
+    expect(
+      isBoardFull([
+        ["x", "o", "x"],
+        ["o", "o", "x"],
+        ["x", "x", "o"],
+      ])
+    ).toBe(true);
+  });
+});
+
+describe("horizontalWinnerOrNull", () => {
+  test("returns null for non horizontal wins", () => {
+    expect(
+      horizontalWinnerOrNull([
+        ["x", "o", "x"],
+        ["o", "o", "x"],
+        [null, null, null],
+      ])
+    ).toBeNull();
+    expect(
+      horizontalWinnerOrNull([
+        ["x", "o", "x"],
+        ["o", "o", "o"],
+        ["x", "o", "o"],
+      ])
+    ).toBeNull();
+    expect(
+      horizontalWinnerOrNull([
+        ["o", "o", "x"],
+        ["o", "o", "x"],
+        ["x", "x", "o"],
+      ])
+    ).toBeNull();
+  });
+  test("returns winner for horizontal wins", () => {
+    expect(
+      horizontalWinnerOrNull([
+        [null, null, null],
+        ["o", "o", "o"],
+        ["x", "x", "o"],
+      ])
+    ).toBe("o");
+    expect(
+      horizontalWinnerOrNull([
+        ["o", "o", "o"],
+        ["o", "o", "x"],
+        ["x", "x", "o"],
+      ])
+    ).toBe("o");
+    expect(
+      horizontalWinnerOrNull([
+        ["o", "o", "x"],
+        ["o", "o", "o"],
+        ["x", "x", "o"],
+      ])
+    ).toBe("o");
+    expect(
+      horizontalWinnerOrNull([
+        ["o", "o", "x"],
+        ["o", "o", null],
+        ["x", "x", "x"],
+      ])
+    ).toBe("x");
+  });
+});
+
+describe("verticalWinnerOrNull", () => {
+  test("returns null for non vertical wins", () => {
+    expect(
+      verticalWinnerOrNull([
+        ["o", "o", "x"],
+        ["o", "o", "x"],
+        ["x", "x", "o"],
+      ])
+    ).toBeNull();
+    expect(
+      verticalWinnerOrNull([
+        ["x", "o", "o"],
+        ["o", "o", "o"],
+        ["o", "x", "x"],
+      ])
+    ).toBeNull();
+    expect(
+      verticalWinnerOrNull([
+        ["o", "o", "x"],
+        ["o", "x", "x"],
+        ["x", "x", "o"],
+      ])
+    ).toBeNull();
+    expect(
+      verticalWinnerOrNull([
+        [null, "o", "x"],
+        [null, "x", "x"],
+        [null, "x", "o"],
+      ])
+    ).toBeNull();
+  });
+  test("returns winner for vertical wins", () => {
+    expect(
+      verticalWinnerOrNull([
+        ["o", null, "o"],
+        ["o", "o", "x"],
+        ["o", "x", "o"],
+      ])
+    ).toBe("o");
+    expect(
+      verticalWinnerOrNull([
+        ["o", "o", "x"],
+        ["o", "o", "x"],
+        ["x", "o", "o"],
+      ])
+    ).toBe("o");
+    expect(
+      verticalWinnerOrNull([
+        ["o", "o", "x"],
+        ["o", "o", "x"],
+        [null, "x", "x"],
+      ])
+    ).toBe("x");
+    expect(
+      verticalWinnerOrNull([
+        [null, "o", "x"],
+        [null, "o", "x"],
+        [null, "x", "x"],
+      ])
+    ).toBe("x");
+  });
+});
