@@ -1,4 +1,4 @@
-const readlineSync = require("readline-sync")
+var readlineSync = require("readline-sync")
 /**
  * Takes in an optional length argument and
  * returns a matrix grid of that length filled with null.
@@ -7,7 +7,7 @@ const readlineSync = require("readline-sync")
  * @returns {Array[]}
  */
 
-const makeBoard = () => {};
+var makeBoard = () => {};
 
 /**
  * Takes in a row, column, and board and determines whether or not
@@ -19,7 +19,7 @@ const makeBoard = () => {};
  * @param {Array[]} board
  * @returns {boolean} Is the position valid.
  */
-const isValidPosition = () => {};
+var isValidPosition = () => {};
 
 /**
  * Takes in a row, column, symbol, and board and updates the board to
@@ -32,7 +32,7 @@ const isValidPosition = () => {};
  * @returns {Array[]} Updated board.
  */
 
-const placeMark = () => {};
+var placeMark = () => {};
 
 /**
  * Takes in a board and returns whether or not the board
@@ -42,7 +42,7 @@ const placeMark = () => {};
  * @returns {boolean} isBoardFull ?
  */
 
-const isBoardFull = () => {};
+var isBoardFull = () => {};
 
 /**
  * Takes in a board and determines if there is a
@@ -53,7 +53,7 @@ const isBoardFull = () => {};
  * @returns {string|null} Returns either the winner or null.
  */
 
-const horizontalWinnerOrNull = () => {};
+var horizontalWinnerOrNull = () => {};
 
 /**
  * Takes in a board and determines if there is a
@@ -64,7 +64,7 @@ const horizontalWinnerOrNull = () => {};
  * @returns {string|null} Returns either the winner or null.
  */
 
-const verticalWinnerOrNull = () => {};
+var verticalWinnerOrNull = () => {};
 
 /**
  * Takes in a board and determines if there is a
@@ -75,7 +75,7 @@ const verticalWinnerOrNull = () => {};
  * @returns {string|null} Returns either the winner or null.
  */
 
-const leftDiagonalWinnerOrNull = () => {};
+var leftDiagonalWinnerOrNull = () => {};
 /**
  * Takes in a board and determines if there is a
  * top right down diagonal winner. If there is, it should return that winner.
@@ -85,7 +85,7 @@ const leftDiagonalWinnerOrNull = () => {};
  * @returns {string|null} Returns either the winner or null.
  */
 
-const rightDiagonalWinnerOrNull = () => {};
+var rightDiagonalWinnerOrNull = () => {};
 
 /**
  * Takes in a board and determines wether or not a game
@@ -97,7 +97,7 @@ const rightDiagonalWinnerOrNull = () => {};
  * @returns {string|boolean} Returns either the winner (truthy),
  * true (which implies a tie), or false (game is NOT over)
  */
-const isGameOver = () => {};
+var isGameOver = () => {};
 
 /**
  * Takes in a string symbol (either x or o) and returns
@@ -105,7 +105,7 @@ const isGameOver = () => {};
  * @param {string} sym
  * @returns {string} The opposite symbol
  */
-const switchSymbol = () => {};
+var switchSymbol = () => {};
 
 /**
  * Takes in a row of the board and returns the elements
@@ -114,7 +114,7 @@ const switchSymbol = () => {};
  * @returns {string}
  */
 
-const formatRow = () => {};
+var formatRow = () => {};
 
 /**
  * Takes in a board and logs it to the console.
@@ -125,26 +125,27 @@ const formatRow = () => {};
  * @param {Array[]} board
  * @returns {undefined} displayBoard is only in charge of logging the board to the console.
  */
-const displayBoard = () => {};
+var displayBoard = () => {};
+
 
 /**
  * Asks user for row input and returns row. Use questionInt
  * @returns {number} row (should be 1 lower than user because people count from 1)
  */
 
-const getRow = () => {};
+ var getRow = () => {};
 
 /**
  * Asks user for col input and returns col.
  * @returns {number} col (should be 1 lower than user because people count from 1)
  */
 
-const getCol = () => {};
+ var getCol = () => {};
 
 /**
  * Takes in a symbol and a board.
  * Uses the symbol to tell the user it's their turn.
- * Get's input for what row and for what col from user.
+ * calls getRow and getCol.
  * checks to see if that position is valid.
  * If the position is not valid, it should tell the user
  * "Invalid Position" and call itself to retake the turn.
@@ -157,7 +158,32 @@ const getCol = () => {};
  * @returns {undefined} Should place mark or call itself again.
  */
 
-const takeTurn = () => {};
+var takeTurn = () => {};
+
+/**
+ * Uses readline-sync's questionInt to find out how many rows / cols it will have. 
+ * Because it's a square only one call should be made. 
+ * Should create a symbol variable that starts at value "x"
+ * Should create a board variable and call makeBoard. 
+ * Should create a gameOver variable and initialize it to false. 
+ * 
+ * while the game is not over it should:
+ * display the board 
+ * call takeTurn and switchSymbol
+ * 
+ * if the game is over is should say the symbol that won like: "x is the winner!"
+ * If the game is a tie it should say "Tie Game!"
+ * update game over to the result of isGameOver 
+ * 
+ * When the game is over use readline-sync keyInYN method to ask the user 
+ * to play gain. 
+ * 
+ * If they answer "y" play should call itself, otherwise it 
+ * should log "Goodnight!"
+ * 
+ */
+var play = () => {};
+
 
 module.exports = {
   makeBoard,
@@ -175,4 +201,5 @@ module.exports = {
   getRow,
   getCol,
   takeTurn,
+  play,
 };

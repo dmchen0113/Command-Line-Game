@@ -133,7 +133,7 @@ const play = () => {
   }
 };
 
-play();
+// play();
 // let testBoard = [
 //   ["o", "x", "x"],
 //   ["x", "o", "O"],

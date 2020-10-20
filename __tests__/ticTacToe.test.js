@@ -1,7 +1,9 @@
-const { describe, expect, test } = require("@jest/globals");
+const { describe, expect, test, beforeEach, afterAll } = require("@jest/globals");
 const readlineSync = require("readline-sync");
+var rewire = require("rewire");
 
-const {
+const TicTac = rewire("../tic-tac-toe/ticTacToe.js");
+var {
   makeBoard,
   isValidPosition,
   placeMark,
@@ -17,9 +19,8 @@ const {
   getRow,
   getCol,
   takeTurn,
-} = require("../tic-tac-toe/ticTacToe.js");
-
-const ticTacs = require("../tic-tac-toe/ticTacToe.js");
+  play,
+} = TicTac;
 
 describe("makeBoard", () => {
   test("returns a matrix of a given length", () => {
@@ -390,26 +391,33 @@ describe("formatRow", () => {
 
 describe("displayBoard", () => {
   test("should call console.log 2n - 1 times", () => {
-    jest.spyOn(console, "log");
-    // const spy = jest.spyOn(ticTacs, "formatRow");
-    //   jest.mock("../tic-tac-toe/ticTacToe.js");
-    //   const formatRow = jest.formatRow.mockReturnValue("x |  | o")
-    expect(console.log.mock.calls.length).toBe(0);
+    let logs = [];
+    const logMock = jest.fn((...args) => logs.push([...args]));
+    TicTac.__set__("console", {
+      log: logMock,
+    });
+
+    const formatRowMock = jest.fn();
+    TicTac.__set__("formatRow", formatRowMock);
+    // jest.spyOn(console, "log");
+    // expect(logMock).toHaveBeenCalledTimes(0)
+    expect(logs.length).toBe(0);
     displayBoard([
       ["x", "o", "o"],
       ["o", "o", "x"],
       ["x", "x", null],
     ]);
-    expect(console.log.mock.calls.length).toBe(5);
-    expect(console.log.mock.calls[1][0]).toBe("---------");
-    //   expect(console.log.mock.calls[2][0]).toBe("x |  | o");
-    expect(console.log.mock.calls[3][0]).toBe("---------");
+    expect(logs.length).toBe(5);
+    expect(logs[1][0]).toBe("---------");
+    expect(logs[3][0]).toBe("---------");
+    expect(formatRowMock).toHaveBeenCalledTimes(3);
 
-    afterEach(() => {
-      jest.clearAllMocks();
-    });
+    // afterEach(() => {
+    //   jest.clearAllMocks();
+    // });
   });
 });
+
 describe("getRow", () => {
   test("should ask for user row input and return their input minus 1", () => {
     const questionIntMock = jest.spyOn(readlineSync, "questionInt");
@@ -439,5 +447,54 @@ describe("getCol", () => {
       jest.clearAllMocks();
     });
   });
+});
+
+describe("takeTurn", () => {
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+  let logs = [];
+  const logMock = jest.fn((...args) => logs.push([...args]));
+  TicTac.__set__("console", {
+    log: logMock,
+  });
+  let isValidPositionMock = jest
+    .fn()
+    .mockReturnValueOnce(false)
+    .mockReturnValueOnce(true);
+  var revertIsValidPosition = TicTac.__set__(
+    "isValidPosition",
+    isValidPositionMock
+  );
+  let getRowMock = jest.fn().mockImplementation(() => 0);
+  let getColMock = jest.fn().mockImplementation(() => 1);
+  let placeMarkMock = jest.fn();
+
+  TicTac.__set__("getRow", getRowMock)
+  TicTac.__set__("getCol", getColMock)
+  TicTac.__set__("placeMark", placeMarkMock)
+
+  let board = [
+    ["x", null, null],
+    [null, "o", null],
+    [null, "x", "o"],
+  ];
+  takeTurn("x", board );
+
+  test("Tells the user it's their turn with the symbol", () => {
+    expect(logs[0][0]).toBe("x it's your turn!");
+  });
+
+  test("On invalid input calls itself again", () => {
+    expect(logs[1][0]).toBe("Invalid Position");
+    expect(logs[2][0]).toBe("x it's your turn!");
+    expect(isValidPositionMock).toHaveBeenCalledTimes(2);
+  });
+
+  test("On valid input calls placeMark with correct arguments", () => {
+      expect(placeMarkMock).toHaveBeenCalledTimes(1);
+      expect(placeMarkMock).toHaveBeenCalledWith(0, 1, "x", board)
+  })
 });
 
