@@ -2,7 +2,7 @@
 
 
 # Command Line Game Lab
-Start to see how you can develop games in the command line.  [Documentation link](https://joinpursuit.github.io/Pursuit_Core_Web_Command_Line_Game_Practice_Lab/)
+Start to see how you can develop games in the command line.  [Documentation link](https://joinpursuit.github.io/Command-Line-Game/)
 
 ## Learning Objectives 
  * Learn to make a game in the console.  
