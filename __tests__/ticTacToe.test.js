@@ -26,8 +26,8 @@ describe("makeBoard", () => {
   test("returns a matrix of a given length", () => {
     expect(makeBoard(4).length).toBe(4);
     expect(makeBoard(4)[0].length).toBe(4);
-    expect(makeBoard(4).length).toBe(2);
-    expect(makeBoard(4)[0].length).toBe(2);
+    expect(makeBoard(2).length).toBe(2);
+    expect(makeBoard(2)[0].length).toBe(2);
   });
   test("returns a matrix of a length 3 when no argument is passed", () => {
     expect(makeBoard().length).toBe(3);
@@ -71,25 +71,17 @@ describe("placeMark", () => {
       [null, null, null],
     ];
     let returnedBoard = placeMark(0, 0, "x", board);
-    expect(returnedBoard).toBe(board);
-    expect(board[0][0]).toBe("x");
+    // see: https://jestjs.io/docs/en/expect.html#tobevalue
+    expect(Object.is(returnedBoard, board)).toBe(true)
+    expect(returnedBoard[0][0]).toBe("x");
+    expect(returnedBoard[2][1]).toBeNull();
 
-    expect(board[2][1]).toBeNull();
-    placeMark(2, 1, "x", board);
-    expect(board[2][1]).toBe("x");
+    returnedBoard = placeMark(2, 1, "x", returnedBoard);
+    expect(returnedBoard[2][1]).toBe("x");
   });
 });
 
 describe("isBoardFull", () => {
-  test("returns false when board is full of null", () => {
-    expect(
-      isBoardFull([
-        [null, null, null],
-        [null, null, null],
-        [null, null, null],
-      ])
-    ).toBe(false);
-  });
   test("returns false when board is not full", () => {
     expect(
       isBoardFull([
@@ -112,7 +104,7 @@ describe("isBoardFull", () => {
 });
 
 describe("horizontalWinnerOrNull", () => {
-  test("returns null for non horizontal wins", () => {
+  test("returns null if no horizontal winner", () => {
     expect(
       horizontalWinnerOrNull([
         ["x", "o", "x"],
@@ -123,7 +115,7 @@ describe("horizontalWinnerOrNull", () => {
     expect(
       horizontalWinnerOrNull([
         ["x", "o", "x"],
-        ["o", "o", "o"],
+        ["o", "o", "x"],
         ["x", "o", "o"],
       ])
     ).toBeNull();
