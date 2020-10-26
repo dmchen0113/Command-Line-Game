@@ -1,4 +1,4 @@
-var readlineSync = require("readline-sync")
+let readlineSync = require("readline-sync")
 /**
  * Takes in an optional length argument and
  * returns a matrix grid of that length filled with null.
@@ -7,7 +7,7 @@ var readlineSync = require("readline-sync")
  * @returns {Array[]}
  */
 
-var makeBoard = () => {};
+let makeBoard = () => {};
 
 /**
  * Takes in a row, column, and board and determines whether or not
@@ -19,7 +19,7 @@ var makeBoard = () => {};
  * @param {Array[]} board
  * @returns {boolean} Is the position valid.
  */
-var isValidPosition = () => {};
+let isValidPosition = () => {};
 
 /**
  * Takes in a row, column, symbol, and board and updates the board to
@@ -32,7 +32,7 @@ var isValidPosition = () => {};
  * @returns {Array[]} Updated board.
  */
 
-var placeMark = () => {};
+let placeMark = () => {};
 
 /**
  * Takes in a board and returns whether or not the board
@@ -42,7 +42,7 @@ var placeMark = () => {};
  * @returns {boolean} isBoardFull ?
  */
 
-var isBoardFull = () => {};
+let isBoardFull = () => {};
 
 /**
  * Takes in a board and determines if there is a
@@ -53,7 +53,7 @@ var isBoardFull = () => {};
  * @returns {string|null} Returns either the winner or null.
  */
 
-var horizontalWinnerOrNull = () => {};
+let horizontalWinnerOrNull = () => {};
 
 /**
  * Takes in a board and determines if there is a
@@ -64,7 +64,7 @@ var horizontalWinnerOrNull = () => {};
  * @returns {string|null} Returns either the winner or null.
  */
 
-var verticalWinnerOrNull = () => {};
+let verticalWinnerOrNull = () => {};
 
 /**
  * Takes in a board and determines if there is a
@@ -75,7 +75,7 @@ var verticalWinnerOrNull = () => {};
  * @returns {string|null} Returns either the winner or null.
  */
 
-var leftDiagonalWinnerOrNull = () => {};
+let leftDiagonalWinnerOrNull = () => {};
 /**
  * Takes in a board and determines if there is a
  * top right down diagonal winner. If there is, it should return that winner.
@@ -85,7 +85,7 @@ var leftDiagonalWinnerOrNull = () => {};
  * @returns {string|null} Returns either the winner or null.
  */
 
-var rightDiagonalWinnerOrNull = () => {};
+let rightDiagonalWinnerOrNull = () => {};
 
 /**
  * Takes in a board and determines wether or not a game
@@ -97,7 +97,7 @@ var rightDiagonalWinnerOrNull = () => {};
  * @returns {string|boolean} Returns either the winner (truthy),
  * true (which implies a tie), or false (game is NOT over)
  */
-var isGameOver = () => {};
+let isGameOver = () => {};
 
 /**
  * Takes in a string symbol (either x or o) and returns
@@ -105,7 +105,7 @@ var isGameOver = () => {};
  * @param {string} sym
  * @returns {string} The opposite symbol
  */
-var switchSymbol = () => {};
+let switchSymbol = () => {};
 
 /**
  * Takes in a row of the board and returns the elements
@@ -114,7 +114,7 @@ var switchSymbol = () => {};
  * @returns {string}
  */
 
-var formatRow = () => {};
+let formatRow = () => {};
 
 /**
  * Takes in a board and logs it to the console.
@@ -125,7 +125,7 @@ var formatRow = () => {};
  * @param {Array[]} board
  * @returns {undefined} displayBoard is only in charge of logging the board to the console.
  */
-var displayBoard = () => {};
+let displayBoard = () => {};
 
 
 /**
@@ -133,14 +133,14 @@ var displayBoard = () => {};
  * @returns {number} row (should be 1 lower than user because people count from 1)
  */
 
- var getRow = () => {};
+ let getRow = () => {};
 
 /**
  * Asks user for col input and returns col.
  * @returns {number} col (should be 1 lower than user because people count from 1)
  */
 
- var getCol = () => {};
+ let getCol = () => {};
 
 /**
  * Takes in a symbol and a board.
@@ -158,7 +158,7 @@ var displayBoard = () => {};
  * @returns {undefined} Should place mark or call itself again.
  */
 
-var takeTurn = () => {};
+let takeTurn = () => {};
 
 /**
  * Uses readline-sync's questionInt to find out how many rows / cols it will have. 
@@ -182,7 +182,7 @@ var takeTurn = () => {};
  * should log "Goodnight!"
  * 
  */
-var play = () => {};
+let play = () => {};
 
 
 module.exports = {
